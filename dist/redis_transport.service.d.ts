@@ -1,8 +1,8 @@
-import { ClientProviderOptions, ClientRedis } from '@nestjs/microservices';
+import { ClientRedis } from '@nestjs/microservices';
 export declare class RedisTransportService extends ClientRedis {
     constructor(options: any);
     static getProviderOptions: (options: any) => ClientProviderOptions;
-    sendPromise(topicName: string, topicMessage: any): Promise<any>;
+    sendPromise<T>(topicName: string, topicMessage: unknown): Promise<T>;
     onApplicationBootstrap(): Promise<void>;
     beforeApplicationShutdown(): Promise<void>;
 }

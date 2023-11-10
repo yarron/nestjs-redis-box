@@ -20,7 +20,7 @@ let RedisCacheService = class RedisCacheService extends ioredis_1.default {
         return JSON.parse(await super.get(key));
     }
     async set(key, value) {
-        return super.set(key, JSON.stringify(value));
+        super.set(key, JSON.stringify(value));
     }
 };
 exports.RedisCacheService = RedisCacheService;

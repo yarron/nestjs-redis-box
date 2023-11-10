@@ -1,18 +1,29 @@
-# Module Redis
+# nestjs-redis-box
 
 1. Connecting globally
 
 Transferable options
 
 ```
-const options = {} as RedisOptions;
+const options =
+  {
+    options: {
+      host: '127.0.0.1',
+      port: 6379,
+      username: undefined,
+      password: undefined,
+    },
+    isCache: true,
+    isTransport: true,
+    isGraphql: true,
+  };
 
 ```
 
 You can read more about the options here https://docs.nestjs.com/microservices/redis#options
 
 ```
-import { RedisModule } from '@app/redis';
+import { RedisModule } from 'nestjs-redis-box';
 
 @Module({
   imports: [
@@ -26,8 +37,6 @@ export default class AppModule {}
 2. Example of sending messages to a microservice with waiting for a response
 
 ```
-import { RedisService } from '@app/redis';
-
 @Resolver(() => NetworkModel)
 export class NetworkResolver {
   constructor(private readonly serviceRedis: RedisService) {}
@@ -76,8 +85,7 @@ Clarification:
 4. If you have a hybrid application and you want to not only send but also receive messages from microservices, then you need to add the following code to the main.ts file
 
 ```
-import { RedisModule } from '@app/redis';
-
+import { RedisModule } from 'nestjs-redis-box';
 const options = {} as RedisOptions;
 
 async function bootstrap() {

@@ -18,7 +18,7 @@ export class RedisTransportService extends ClientRedis {
     options,
   });
 
-  sendPromise(topicName: string, topicMessage: any): Promise<any> {
+  sendPromise<T>(topicName: string, topicMessage: unknown): Promise<T> {
     return lastValueFrom(
       super
         .send(topicName, topicMessage)
