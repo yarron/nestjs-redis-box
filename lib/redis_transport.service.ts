@@ -5,14 +5,17 @@ import {
   Transport,
 } from '@nestjs/microservices';
 import { catchError, lastValueFrom, timeout } from 'rxjs';
+import { RedisOptions } from 'ioredis';
 
 @Injectable()
 export class RedisTransportService extends ClientRedis {
-  constructor(options) {
+  constructor(options: RedisOptions) {
     super(options);
   }
 
-  static getProviderOptions = (options): ClientProviderOptions => ({
+  static getProviderOptions = (
+    options: RedisOptions,
+  ): ClientProviderOptions => ({
     name: 'REDIS',
     transport: Transport.REDIS,
     options,

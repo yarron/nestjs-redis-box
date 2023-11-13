@@ -42,4 +42,3 @@ exports.RedisTransportService = RedisTransportService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [Object])
 ], RedisTransportService);
-//# sourceMappingURL=redis_transport.service.js.map

@@ -49,4 +49,3 @@ exports.RedisModule = RedisModule;
 exports.RedisModule = RedisModule = RedisModule_1 = __decorate([
     (0, common_1.Module)({})
 ], RedisModule);
-//# sourceMappingURL=redis.module.js.map

@@ -17,10 +17,10 @@ let RedisCacheService = class RedisCacheService extends ioredis_1.default {
         super(options);
     }
     async get(key) {
-        return JSON.parse(await super.get(key));
+        return JSON.parse((await super.get(key)) || '');
     }
     async set(key, value) {
-        super.set(key, JSON.stringify(value));
+        return super.set(key, JSON.stringify(value));
     }
 };
 exports.RedisCacheService = RedisCacheService;
@@ -28,4 +28,3 @@ exports.RedisCacheService = RedisCacheService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [Object])
 ], RedisCacheService);
-//# sourceMappingURL=redis_cache.service.js.map

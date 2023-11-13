@@ -24,4 +24,3 @@ exports.RedisGraphqlService = RedisGraphqlService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [Object])
 ], RedisGraphqlService);
-//# sourceMappingURL=redis_graphql.service.js.map
