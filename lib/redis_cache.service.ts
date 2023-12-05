@@ -8,7 +8,7 @@ export class RedisCacheService extends Redis {
   }
 
   async get<T>(key: string): Promise<T> {
-    return JSON.parse((await super.get(key)) || '');
+    return JSON.parse((await super.get(key)) || '{}');
   }
 
   async set<T>(key: string, value: T): Promise<'OK'> {
