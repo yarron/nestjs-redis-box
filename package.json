@@ -1,6 +1,6 @@
 {
   "name": "nestjs-redis-box",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "The module makes it very easy to connect redis with the ability to use it as a cache, transport, graphql subscription. ",
   "author": "Yarron",
   "license": "MIT",

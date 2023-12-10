@@ -122,7 +122,7 @@ And then save to cache or retrieve from cache.
   }
 
   async setSession(email: string, data: any) {
-    await this.redisCacheService.set(`session:${email}`, data);
+    await this.redisCacheService.set(`session:${email}`, JSON.stringify(data));
   }
 ```
 

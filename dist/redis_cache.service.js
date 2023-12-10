@@ -16,12 +16,6 @@ let RedisCacheService = class RedisCacheService extends ioredis_1.default {
     constructor(options) {
         super(options);
     }
-    async get(key) {
-        return JSON.parse((await super.get(key)) || '{}');
-    }
-    async set(key, value) {
-        return super.set(key, JSON.stringify(value));
-    }
 };
 exports.RedisCacheService = RedisCacheService;
 exports.RedisCacheService = RedisCacheService = __decorate([
