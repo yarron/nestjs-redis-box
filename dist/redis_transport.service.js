@@ -17,10 +17,10 @@ let RedisTransportService = class RedisTransportService extends microservices_1.
     constructor(options) {
         super(options);
     }
-    sendPromise(topicName, topicMessage) {
+    sendPromise(topicName, topicMessage, timeOut = 10000) {
         return (0, rxjs_1.lastValueFrom)(super
             .send(topicName, topicMessage)
-            .pipe((0, rxjs_1.timeout)(10000))
+            .pipe((0, rxjs_1.timeout)(timeOut))
             .pipe((0, rxjs_1.catchError)((error) => {
             throw new Error(error?.message);
         })));

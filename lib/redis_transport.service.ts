@@ -21,11 +21,15 @@ export class RedisTransportService extends ClientRedis {
     options,
   });
 
-  sendPromise<T>(topicName: string, topicMessage: unknown): Promise<T> {
+  sendPromise<T>(
+    topicName: string,
+    topicMessage: unknown,
+    timeOut = 10000,
+  ): Promise<T> {
     return lastValueFrom(
       super
         .send(topicName, topicMessage)
-        .pipe(timeout(10000))
+        .pipe(timeout(timeOut))
         .pipe(
           catchError((error: Error) => {
             throw new Error(error?.message);

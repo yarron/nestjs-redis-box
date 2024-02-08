@@ -13,12 +13,30 @@ exports.RedisCacheService = void 0;
 const common_1 = require("@nestjs/common");
 const ioredis_1 = require("ioredis");
 let RedisCacheService = class RedisCacheService extends ioredis_1.default {
-    constructor(options) {
+    constructor(options, logger = console) {
         super(options);
+        this._logger = logger;
+    }
+    onModuleInit() {
+        this.on('connect', () => {
+            this._logger.log('CONNECTION SUCCESS!', 'REDIS');
+        });
+        this.on('connecting', () => {
+            this._logger.debug('CONNECTING...', 'REDIS');
+        });
+        this.on('end', () => {
+            this._logger.error('CONNECTION TERMINATED!', 'REDIS');
+        });
+        this.on('error', (error) => {
+            this._logger.error(`CONNECTION FAILED: ${error.message}`, 'REDIS');
+        });
+        this.on('reconnecting', (wait) => {
+            this._logger.warn(`CONNECTION WAIT: ${wait}`, 'REDIS');
+        });
     }
 };
 exports.RedisCacheService = RedisCacheService;
 exports.RedisCacheService = RedisCacheService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [Object])
+    __metadata("design:paramtypes", [Object, Object])
 ], RedisCacheService);
