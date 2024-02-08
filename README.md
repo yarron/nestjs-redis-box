@@ -1,8 +1,8 @@
 # nestjs-redis-box
 
-1. Connecting globally
+## Connecting globally
 
-Transferable options
+### Transferable options (Variant 1)
 
 ```
 const options =
@@ -16,8 +16,30 @@ const options =
     isCache: true,
     isTransport: true,
     isGraphql: true,
-  };
+  } as IORedis;
 
+```
+### Transferable options (Variant 2)
+```
+
+const options = {
+    options: {
+      host: '127.0.0.1',
+      port: 6379,
+      username: undefined,
+      password: undefined,
+      retryStrategy: (times) => {
+        const delay = 5000;
+        if (times >= 12 * 5) {
+          return new Error('REDIS CONNECTION TERMINATED');
+        }
+        return delay;
+      },
+    },
+    isCache: true,
+    isTransport: true,
+    isGraphql: true,
+  } as IORedis
 ```
 
 You can read more about the options here https://docs.nestjs.com/microservices/redis#options
@@ -34,7 +56,7 @@ import { RedisModule } from 'nestjs-redis-box';
 export default class AppModule {}
 ```
 
-2. Example of sending messages to a microservice with waiting for a response
+## Example of sending messages to a microservice with waiting for a response
 
 ```
 @Resolver(() => NetworkModel)
@@ -60,7 +82,7 @@ export class NetworkResolver {
 }
 ```
 
-3. Example of receiving a message in a microservice
+## Example of receiving a message in a microservice
 
 ```
 @Controller('network')
@@ -77,12 +99,12 @@ export class NetworkControler {
 }
 ```
 
-Clarification:
+### Clarification:
 
 - sendPromise - sends a message while waiting for a response (async/await)
 - emit - sends an event without waiting for a response (pub/sub)
 
-4. If you have a hybrid application and you want to not only send but also receive messages from microservices, then you need to add the following code to the main.ts file
+## If you have a hybrid application and you want to not only send but also receive messages from microservices, then you need to add the following code to the main.ts file
 
 ```
 import { RedisModule } from 'nestjs-redis-box';
@@ -105,7 +127,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-5. To use the caching mechanism in redis it is enough to perform a service connection
+## To use the caching mechanism in redis it is enough to perform a service connection
 
 ```
  constructor(
@@ -126,7 +148,7 @@ And then save to cache or retrieve from cache.
   }
 ```
 
-6. To use the Subscribtion mechanism in Graphql it is enough to perform a service connection
+## To use the Subscribtion mechanism in Graphql it is enough to perform a service connection
 
 ```
 constructor(
@@ -134,13 +156,13 @@ constructor(
 ) {}
 ```
 
-Send an event to graphql
+### Send an event to graphql
 
 ```
 await this.redisGraphqlService.publish('nameEvent', {...});
 ```
 
-And add a resolver to Subscribtion
+### And add a resolver to Subscribtion
 
 ```
 @Subscription(() => Model, {
