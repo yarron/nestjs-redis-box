@@ -48,4 +48,5 @@ let RedisModule = RedisModule_1 = class RedisModule {
 exports.RedisModule = RedisModule;
 exports.RedisModule = RedisModule = RedisModule_1 = __decorate([
     (0, common_1.Module)({})
+    // biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 ], RedisModule);

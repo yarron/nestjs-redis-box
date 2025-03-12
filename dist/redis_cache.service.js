@@ -18,20 +18,20 @@ let RedisCacheService = class RedisCacheService extends ioredis_1.default {
         this._logger = logger;
     }
     onModuleInit() {
-        this.on('connect', () => {
-            this._logger.log('CONNECTION SUCCESS!', 'REDIS');
+        this.on("connect", () => {
+            this._logger.log("CONNECTION SUCCESS!", "REDIS");
         });
-        this.on('connecting', () => {
-            this._logger.debug('CONNECTING...', 'REDIS');
+        this.on("connecting", () => {
+            this._logger.debug("CONNECTING...", "REDIS");
         });
-        this.on('end', () => {
-            this._logger.error('CONNECTION TERMINATED!', 'REDIS');
+        this.on("end", () => {
+            this._logger.error("CONNECTION TERMINATED!", "REDIS");
         });
-        this.on('error', (error) => {
-            this._logger.error(`CONNECTION FAILED: ${error.message}`, 'REDIS');
+        this.on("error", (error) => {
+            this._logger.error(`CONNECTION FAILED: ${error.message}`, "REDIS");
         });
-        this.on('reconnecting', (wait) => {
-            this._logger.warn(`CONNECTION WAIT: ${wait}`, 'REDIS');
+        this.on("reconnecting", (wait) => {
+            this._logger.warn(`CONNECTION WAIT: ${wait}`, "REDIS");
         });
     }
 };

@@ -1,8 +1,8 @@
-import { RedisOptions } from 'ioredis';
+import { RedisOptions } from "ioredis";
 
 export interface IORedis {
-  isTransport: boolean;
-  isCache: boolean;
-  isGraphql: boolean;
-  options: RedisOptions;
+	isTransport: boolean;
+	isCache: boolean;
+	isGraphql: boolean;
+	options: RedisOptions;
 }

@@ -14,6 +14,7 @@ const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 const rxjs_1 = require("rxjs");
 let RedisTransportService = class RedisTransportService extends microservices_1.ClientRedis {
+    // biome-ignore lint/complexity/noUselessConstructor: <explanation>
     constructor(options) {
         super(options);
     }
@@ -34,7 +35,7 @@ let RedisTransportService = class RedisTransportService extends microservices_1.
 };
 exports.RedisTransportService = RedisTransportService;
 RedisTransportService.getProviderOptions = (options) => ({
-    name: 'REDIS',
+    name: "REDIS",
     transport: microservices_1.Transport.REDIS,
     options,
 });
